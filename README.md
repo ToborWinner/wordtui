@@ -29,7 +29,7 @@ To setup a language, you should create a `language.json` file in the wordtui con
                     "content": "section content"
                 },
                 {
-                    "name": "Article",
+                    "name": "Noun",
                     "content": "section content"
                 },
                 {
