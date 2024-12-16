@@ -52,5 +52,20 @@
           };
         };
       });
+
+      packages = forEachSupportedSystem ({ pkgs }: {
+        default = pkgs.rustPlatform.buildRustPackage {
+          pname = "wordtui";
+          version = "1.0.0";
+          src = ./.;
+
+          meta = {
+            description = "A TUI to learn words in a foreign language";
+            license = "MIT";
+          };
+
+          cargoHash = "sha256-0Ka1mqul1lfP0CNa4lUi7B3iIB0W/soq7ksAAaFmqP4=";
+        };
+      });
     };
 }
