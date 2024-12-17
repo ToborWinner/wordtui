@@ -25,6 +25,7 @@ pub struct App {
     current_scroll: u16,
     last_correct: bool,
     known: usize,
+    prev_streak: u32,
 }
 
 #[derive(Debug)]
@@ -86,6 +87,7 @@ impl App {
             current_scroll: 0,
             last_correct: true,
             known: 0,
+            prev_streak: 0,
         };
 
         obj.next_word();
@@ -162,6 +164,7 @@ impl App {
             self.calculate_known();
             self.next_word();
         } else {
+            self.prev_streak = self.words[self.curr_index].streak;
             self.words[self.curr_index].streak = 0;
             self.words[self.curr_index].wrong += 1;
             self.last_correct = false;
@@ -223,6 +226,16 @@ impl App {
                     KeyCode::Char('u') => {
                         self.current_scroll = self.current_scroll.saturating_sub(10)
                     }
+                    KeyCode::Char('f') => {
+                        if self.last_correct {
+                            return;
+                        }
+                        self.words[self.curr_index].streak = self.prev_streak;
+                        self.words[self.curr_index].wrong -= 1;
+                        self.words[self.curr_index].correct += 1;
+                        self.last_correct = true;
+                        self.calculate_known();
+                    }
                     KeyCode::Char('n') => {
                         if self.words.get(self.curr_index).unwrap().answer.is_some() {
                             self.next_word()
@@ -270,16 +283,16 @@ impl Widget for &App {
             .borders(Borders::ALL)
             .style(Style::default());
 
+        let curr_word = self.words.get(self.curr_index).unwrap();
+
         Paragraph::new(
             Line::from(vec![
                 "Streak: ".into(),
-                self.words
-                    .get(self.curr_index)
-                    .unwrap()
-                    .streak
-                    .to_string()
-                    .bold()
-                    .yellow(),
+                curr_word.streak.to_string().bold().yellow(),
+                " - Correct: ".into(),
+                curr_word.correct.to_string().bold().green(),
+                " - Wrong: ".into(),
+                curr_word.wrong.to_string().bold().red(),
             ])
             .left_aligned(),
         )

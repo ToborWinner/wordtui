@@ -53,3 +53,4 @@ To go from the definition to the next word, you can press `n`.
 On the definition page, to change the translation, you can press `r` and type the new answer. Press `Enter` to save it.
 On the question page, you can use `Enter` to submit the answer. You can use `Esc` to unselect the textbox. It can be selected again with `i`. To change the translation when on the question page, you can press `r` and type the new answer. Press `Enter` to save it.
 When writing, `Tab` can be used to toggle the next character as a special character. This is for example useful for converting `a` to `ä`.
+In the definition page, after messing up a question, you can press `f` to mark it as correct instead (in case you were right, for example a misspelling).

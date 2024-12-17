@@ -33,7 +33,13 @@ impl Widget for &Definition<'_> {
             ])
             .split(area);
 
-        let word = Line::from(self.word.word.to_string().bold().yellow()).centered();
+        let word_text = if let Some(answer) = &self.word.answer {
+            format!("{} ({})", self.word.word, answer)
+        } else {
+            self.word.word.to_string()
+        };
+
+        let word = Line::from(word_text.bold().yellow()).centered();
 
         let mut definition_text: Vec<Line> = self
             .word
