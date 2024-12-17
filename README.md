@@ -54,3 +54,4 @@ On the definition page, to change the translation, you can press `r` and type th
 On the question page, you can use `Enter` to submit the answer. You can use `Esc` to unselect the textbox. It can be selected again with `i`. To change the translation when on the question page, you can press `r` and type the new answer. Press `Enter` to save it.
 When writing, `Tab` can be used to toggle the next character as a special character. This is for example useful for converting `a` to `ä`.
 In the definition page, after messing up a question, you can press `f` to mark it as correct instead (in case you were right, for example a misspelling).
+In the question page, `s` will increase the streak by one. This is useful when you know the word (and are sure you know the words around) and want to reach streak of 5 quicker.

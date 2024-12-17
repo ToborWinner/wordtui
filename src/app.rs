@@ -205,6 +205,7 @@ impl App {
                 CurrentScreen::Question => match key_event.code {
                     KeyCode::Char('q') => self.exit(),
                     KeyCode::Char('i') => self.writing = Some(Writing::new()),
+                    KeyCode::Char('s') => self.words[self.curr_index].streak += 1,
                     KeyCode::Char('r') => {
                         self.writing = Some(Writing::new());
                         self.current_screen = CurrentScreen::Definition;
@@ -230,7 +231,7 @@ impl App {
                         if self.last_correct {
                             return;
                         }
-                        self.words[self.curr_index].streak = self.prev_streak;
+                        self.words[self.curr_index].streak = self.prev_streak + 1;
                         self.words[self.curr_index].wrong -= 1;
                         self.words[self.curr_index].correct += 1;
                         self.last_correct = true;
